@@ -1,0 +1,2775 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Untitled</title>
+  <style type="text/css">
+  
+  body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  font-size: 100%;
+}
+
+p {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  font-size: 100%;
+}
+
+
+  pre {
+    background-color:black;
+    font-size: 200%;
+    color: whitesmoke;
+  }
+
+
+.slide {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: #f7f7f7;
+}
+
+.slide-content {
+  width: 1000px;
+  height: 800px;
+  overflow: hidden;
+  margin: 10px auto 0 auto;
+  padding: 5px;
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.0;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 200%;
+  line-height: 1.2;
+  text-align: center;
+
+}
+
+h2 {
+  font-size: 190%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 180%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.author h1 {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 100%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 1;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.05s ease-out;
+  -moz-transition: width 0.05s ease-out;
+  -o-transition: width 0.05s ease-out;
+  transition: width 0.05s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 850px) {
+
+  body {
+    font-size: 70%;
+  }
+
+
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  h2 {
+    margin-top: 120px;
+  }
+
+  h3 {
+    margin-top: 120px;
+  }
+
+  .prev, .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .next, .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  .slide-content {
+    padding: 10px;
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  h1 {
+    margin-top: 25px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    border: 1px solid #222;
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="slide -" id="slide-1">
+    <section class="slide-content"><h1 id="introduction-to-docker">Introduction to Docker</h1>
+<h2 id="dfw-python-user-group-workshop">DFW Python User Group Workshop</h2>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-2">
+    <section class="slide-content"><p><img src="https://docs.docker.com/get-started/images/laurel-docker-containers.png" alt="Containers are portable"></p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-3">
+    <section class="slide-content"><p></p><h3 id="docker-concepts">Docker Concepts</h3>
+<p>Docker is a platform for developers and sysadmins to  <strong>develop, deploy, and run</strong>  applications with containers. The use of Linux containers to deploy applications is called  <em>containerization</em>. Containers are not new, but their use for easily deploying applications is.</p>
+<p>Containerization is increasingly popular because containers are:</p>
+<ul>
+<li>Flexible: Any application can be containerized.</li>
+<li>Lightweight: Containers leverage and share the host kernel.</li>
+<li>Interchangeable: Update and upgrade on-the-fly.</li>
+<li>Portable: Build locally, deploy to the cloud, and run anywhere.</li>
+<li>Scalable: Increase and automatically distribute container replicas.</li>
+<li>Stackable: Stack services vertically and on-the-fly.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-4">
+    <section class="slide-content"><p></p><h3 id="history-the-vps-age-until-2007-2008-">History: The VPS age (until 2007-2008)</h3>
+<p><img src="http://container.training/images/containers-as-lightweight-vms.png" alt="lightcont"></p>
+<h3 id="hypervisor"><a href="https://en.wikipedia.org/wiki/Hypervisor">Hypervisor</a></h3>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><p></p><h3 id="containers-cheaper-than-vms">Containers = cheaper than VMs</h3>
+<ul>
+<li><p>Users: hosting providers.</p>
+</li>
+<li><p>Highly specialized audience with strong ops culture.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><p></p><h3 id="containers-easier-than-vms">Containers = easier than VMs</h3>
+<ul>
+<li><p>I can&#39;t speak for Heroku, but containers were (one of) dotCloud&#39;s secret weapon</p>
+</li>
+<li><p>dotCloud was operating a PaaS, using a custom container engine.</p>
+</li>
+<li><p>This engine was based on OpenVZ (and later, LXC) and AUFS.</p>
+</li>
+<li><p>It started (circa 2008) as a single Python script.</p>
+</li>
+<li><p>By 2012, the engine had multiple (~10) Python components.<br>(and ~100 other micro-services!)</p>
+</li>
+<li><p>End of 2012, dotCloud refactors this container engine.</p>
+</li>
+<li><p>The codename for this project is &quot;Docker.&quot;</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><p></p><h3 id="first-public-release-of-docker">First public release of Docker</h3>
+<ul>
+<li><p>March 2013, PyCon, Santa Clara:<br>&quot;Docker&quot; is shown to a public audience for the first time.</p>
+</li>
+<li><p>It is released with an open source license.</p>
+</li>
+<li><p>Very positive reactions and feedback!</p>
+</li>
+<li><p>The dotCloud team progressively shifts to Docker development.</p>
+</li>
+<li><p>The same year, dotCloud changes name to Docker.</p>
+</li>
+<li><p>In 2014, the PaaS activity is sold</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><p></p><h3 id="docker-early-days-2013-2014-">Docker early days (2013-2014)</h3>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><p></p><h3 id="first-users-of-docker">First users of Docker</h3>
+<ul>
+<li><p>PAAS builders (Flynn, Dokku, Tsuru, Deis...)</p>
+</li>
+<li><p>PAAS users (those big enough to justify building their own)</p>
+</li>
+<li><p>CI platforms</p>
+</li>
+<li><p>developers, developers, developers, developers</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><p></p><h3 id="positive-feedback-loop">Positive feedback loop</h3>
+<ul>
+<li><p>In 2013, the technology under containers (cgroups, namespaces, copy-on-write storage...) had many blind spots.</p>
+</li>
+<li><p>The growing popularity of Docker and containers exposed many bugs.</p>
+</li>
+<li><p>As a result, those bugs were fixed, resulting in better stability for containers.</p>
+</li>
+<li><p>Any decent hosting/cloud provider can run containers today.</p>
+</li>
+<li><p>Containers become a great tool to deploy/move workloads to/from on-prem/cloud.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><p></p><h3 id="maturity-2015-2016-">Maturity (2015-2016)</h3>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><p></p><h3 id="docker-becomes-an-industry-standard">Docker becomes an industry standard</h3>
+<ul>
+<li><p>Docker reaches the symbolic 1.0 milestone.</p>
+</li>
+<li><p>Existing systems like Mesos and Cloud Foundry add Docker support.</p>
+</li>
+<li><p>Standardization around the OCI (Open Containers Initiative).</p>
+</li>
+<li><p>Other container engines are developed.</p>
+</li>
+<li><p>Creation of the CNCF (Cloud Native Computing Foundation).</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><p></p><h3 id="docker-becomes-a-platform">Docker becomes a platform</h3>
+<ul>
+<li><p>The initial container engine is now known as &quot;Docker Engine.&quot;</p>
+</li>
+<li><p>Other tools are added:</p>
+<ul>
+<li>Docker Compose (formerly &quot;Fig&quot;)</li>
+<li>Docker Machine</li>
+<li>Docker Swarm</li>
+<li>Kitematic</li>
+<li>Docker Cloud (formerly &quot;Tutum&quot;)</li>
+<li>Docker Datacenter</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Docker Inc. launches commercial offers.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h1 id="our-environment-">Our Environment?</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h1 id="our-environment">Our Environment</h1>
+<p><img src="https://www.docker.com/sites/default/files/Whale%20Logo332_5.png" alt=""></p>
+<p id="play-with-docker">Play with Docker</p>
+<p>A simple, interactive and fun playground to learn Docker</p>
+<p><a href="https://labs.play-with-docker.com/">Play with Docker</a> (PWD) is a project hacked by <a href="https://www.twitter.com/marcosnils">Marcos Liljedhal</a> and <a href="https://www.twitter.com/xetorthio">Jonathan Leibiusky</a> and sponsored by Docker Inc.</p>
+<p>PWD is a Docker playground which allows users to run Docker commands in a matter of seconds. It gives the experience of having a free Alpine Linux Virtual Machine in browser, where you can build and run Docker containers and even create clusters in <a href="https://docs.docker.com/engine/swarm/">Docker Swarm Mode</a>.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h1 id="our-first-container">Our First Container</h1>
+<p><img src="http://container.training/images/title-our-first-containers.jpg" alt="Colorful plastic tubs"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><p></p><h3 id="objectives">Objectives</h3>
+<p>At the end of this lesson, you will have:</p>
+<ul>
+<li><p>Seen Docker in action.</p>
+</li>
+<li><p>Started your first containers.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><p></p><h3 id="hello-world">Hello World</h3>
+<p>In your Docker environment, just run the following command:</p>
+<pre><code class="lang-bash">$ docker run busybox <span class="hljs-built_in">echo</span> hello world
+hello world
+</code></pre>
+<p>(If your Docker install is brand new, you will also see a few extra lines, corresponding to the download of the  <code>busybox</code>  image.)</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><p></p><h3 id="that-was-our-first-container-">That was our first container!</h3>
+<ul>
+<li><p>We used one of the smallest, simplest images available:  <code>busybox</code>.</p>
+</li>
+<li><p><code>busybox</code>  is typically used in embedded systems (phones, routers...)</p>
+</li>
+<li><p>We ran a single process and echo&#39;ed  <code>hello world</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><p></p><h3 id="another-container">Another container</h3>
+<p>Let&#39;s run a more exciting container:</p>
+<pre><code class="lang-bash">$ docker run -it ubuntu
+</code></pre>
+<ul>
+<li><p>This is a brand new container.</p>
+</li>
+<li><p>It runs a bare-bones, no-frills  <code>ubuntu</code>  system.</p>
+</li>
+<li><p><code>-it</code>  is shorthand for  <code>-i -t</code>.</p>
+<ul>
+<li><p><code>-i</code>  tells Docker to connect us to the container&#39;s stdin.</p>
+</li>
+<li><p><code>-t</code>  tells Docker that we want a pseudo-terminal.</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><p></p><h3 id="do-something-in-our-container">Do something in our container</h3>
+<p>Try to run  <code>figlet</code>  in our container.</p>
+<pre><code class="lang-bash">figlet Snow
+</code></pre>
+<p>Alright, we need to install it.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><p></p><h3 id="install-a-package-in-our-container">Install a package in our container</h3>
+<p>We want  <code>figlet</code>, so let&#39;s install it:</p>
+<pre><code class="lang-bash">apt-get update
+apt-get install figlet
+</code></pre>
+<p>One minute later,  <code>figlet</code>  is installed!</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><p></p><h3 id="try-to-run-our-freshly-installed-program">Try to run our freshly installed program</h3>
+<p>The  <code>figlet</code>  program takes a message as parameter.</p>
+<pre><code class="lang-bash">figlet Snow
+</code></pre>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-24">
+    <section class="slide-content"><p></p><h3 id="where-s-our-container-">Where&#39;s our container?</h3>
+<ul>
+<li><p>Our container is now in a  <em>stopped</em>  state.</p>
+</li>
+<li><p>It still exists on disk, but all compute resources have been freed up.</p>
+</li>
+<li><p>We will see later how to get back to that container.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><p></p><h3 id="starting-another-container">Starting another container</h3>
+<p>What if we start a new container, and try to run  <code>figlet</code>  again?</p>
+<pre><code>run -it ubuntu
+
+figlet
+</code></pre><ul>
+<li><p>We started a  <em>brand new container</em>.</p>
+</li>
+<li><p>The basic Ubuntu image was used, and  <code>figlet</code>  is not here.</p>
+</li>
+<li><p>We will see in the next chapters how to bake a custom image with  <code>figlet</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-26">
+    <section class="slide-content"><p></p><h3 id="host-and-containers-are-independent-things">Host and containers are independent things</h3>
+<ul>
+<li><p>We can run an  <code>ubuntu</code>  container on an Linux/Windows/macOS host.</p>
+</li>
+<li><p>They have different, independent packages.</p>
+</li>
+<li><p>Installing something on the host doesn&#39;t expose it to the container.</p>
+</li>
+<li><p>And vice-versa.</p>
+</li>
+<li><p>Even if both the host and the container have the same Linux distro!</p>
+</li>
+<li><p>We can run  <em>any container</em>  on  <em>any host</em>.</p>
+<p>(One exception: Windows containers cannot run on Linux machines; at least not yet.)</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-27">
+    <section class="slide-content"><p></p><h3 id="where-s-our-container-">Where&#39;s our container?</h3>
+<ul>
+<li><p>Our container is now in a  <em>stopped</em>  state.</p>
+</li>
+<li><p>It still exists on disk, but all compute resources have been freed up.</p>
+</li>
+<li><p>We will see later how to get back to that container.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-28">
+    <section class="slide-content"><p></p><h3 id="starting-another-container">Starting another container</h3>
+<p>What if we start a new container, and try to run  <code>figlet</code>  again?</p>
+<pre><code class="lang-bash">docker run -it ubuntu
+</code></pre>
+<ul>
+<li><p>We started a  <em>brand new container</em>.</p>
+</li>
+<li><p>The basic Ubuntu image was used, and  <code>figlet</code>  is not here.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-29">
+    <section class="slide-content"><h1 id="background-containers">Background containers</h1>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-30">
+    <section class="slide-content"><p></p><h3 id="objectives">Objectives</h3>
+<p>Our first containers were  <em>interactive</em>.</p>
+<p>We will now see how to:</p>
+<ul>
+<li>Run a non-interactive container.</li>
+<li>Run a container in the background.</li>
+<li>List running containers.</li>
+<li>Check the logs of a container.</li>
+<li>Stop a container.</li>
+<li>List stopped containers.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-31">
+    <section class="slide-content"><h1 id="background-containers">Background containers</h1>
+<p><img src="images/title-background-containers.jpg" alt="Background containers"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-32">
+    <section class="slide-content"><p></p><h3 id="objectives">Objectives</h3>
+<p>Our first containers were <em>interactive</em>.</p>
+<p>We will now see how to:</p>
+<ul>
+<li>Run a non-interactive container.</li>
+<li>Run a container in the background.</li>
+<li>List running containers.</li>
+<li>Check the logs of a container.</li>
+<li>Stop a container.</li>
+<li>List stopped containers.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-33">
+    <section class="slide-content"><p></p><h3 id="a-non-interactive-container">A non-interactive container</h3>
+<p>We will run a small custom container.</p>
+<p>This container just displays the time every second.</p>
+<pre><code>$ docker run jpetazzo/clock
+Fri Feb 20 00:28:53 UTC 2015
+Fri Feb 20 00:28:54 UTC 2015
+Fri Feb 20 00:28:55 UTC 2015
+...
+</code></pre><ul>
+<li>This container will run forever.</li>
+<li>To stop it, press <code>^C</code>.</li>
+<li>Docker has automatically downloaded the image <code>jpetazzo/clock</code>.</li>
+<li>This image is a user image, created by <code>jpetazzo</code>.</li>
+<li>We will hear more about user images (and other types of images) later.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-34">
+    <section class="slide-content"><p></p><h3 id="run-a-container-in-the-background">Run a container in the background</h3>
+<p>Containers can be started in the background, with the <code>-d</code> flag (daemon mode):</p>
+<pre><code>$ docker run -d jpetazzo/clock
+47d677dcfba4277c6cc68fcaa51f932b544cab1a187c853b7d0caf4e8debe5ad
+</code></pre><ul>
+<li>We don&#39;t see the output of the container.</li>
+<li>But don&#39;t worry: Docker collects that output and logs it!</li>
+<li>Docker gives us the ID of the container.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-35">
+    <section class="slide-content"><p></p><h3 id="list-running-containers">List running containers</h3>
+<p>How can we check that our container is still running?</p>
+<p>With <code>docker ps</code>, just like the UNIX <code>ps</code> command, lists running processes.</p>
+<pre><code>$ docker ps
+CONTAINER ID  IMAGE           ...  CREATED        STATUS        ...
+47d677dcfba4  jpetazzo/clock  ...  2 minutes ago  Up 2 minutes  ...
+</code></pre><p>Docker tells us:</p>
+<ul>
+<li>The (truncated) ID of our container.</li>
+<li>The image used to start the container.</li>
+<li>That our container has been running (<code>Up</code>) for a couple of minutes.</li>
+<li>Other information (COMMAND, PORTS, NAMES) that we will explain later.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-36">
+    <section class="slide-content"><p></p><h3 id="starting-more-containers">Starting more containers</h3>
+<p>Let&#39;s start two more containers.</p>
+<pre><code>$ docker run -d jpetazzo/clock
+57ad9bdfc06bb4407c47220cf59ce21585dce9a1298d7a67488359aeaea8ae2a
+</code></pre><pre><code>$ docker run -d jpetazzo/clock
+068cc994ffd0190bbe025ba74e4c0771a5d8f14734af772ddee8dc1aaf20567d
+</code></pre><p>Check that <code>docker ps</code> correctly reports all 3 containers.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-37">
+    <section class="slide-content"><p></p><h3 id="viewing-only-the-last-container-started">Viewing only the last container started</h3>
+<p>When many containers are already running, it can be useful to
+see only the last container that was started.</p>
+<p>This can be achieved with the <code>-l</code> (&quot;Last&quot;) flag:</p>
+<pre><code>$ docker ps -l
+CONTAINER ID  IMAGE           ...  CREATED        STATUS        ...
+068cc994ffd0  jpetazzo/clock  ...  2 minutes ago  Up 2 minutes  ...
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-38">
+    <section class="slide-content"><p></p><h3 id="view-only-the-ids-of-the-containers">View only the IDs of the containers</h3>
+<p>Many Docker commands will work on container IDs: <code>docker stop</code>, <code>docker rm</code>...</p>
+<p>If we want to list only the IDs of our containers (without the other colums
+or the header line),
+we can use the <code>-q</code> (&quot;Quiet&quot;, &quot;Quick&quot;) flag:</p>
+<pre><code>$ docker ps -q
+068cc994ffd0
+57ad9bdfc06b
+47d677dcfba4
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-39">
+    <section class="slide-content"><p></p><h3 id="combining-flags">Combining flags</h3>
+<p>We can combine <code>-l</code> and <code>-q</code> to see only the ID of the last container started:</p>
+<pre><code>$ docker ps -lq
+068cc994ffd0
+</code></pre><p>At a first glance, it looks like this would be particularly useful in scripts.</p>
+<p>However, if we want to start a container and get its ID in a reliable way,
+it is better to use <code>docker run -d</code>, which we will cover in a bit.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-40">
+    <section class="slide-content"><p></p><h3 id="view-the-logs-of-a-container">View the logs of a container</h3>
+<p>We told you that Docker was logging the container output.</p>
+<p>Let&#39;s see that now.</p>
+<pre><code>$ docker logs 068
+Fri Feb 20 00:39:52 UTC 2015
+Fri Feb 20 00:39:53 UTC 2015
+...
+</code></pre><ul>
+<li>We specified a <em>prefix</em> of the full container ID.</li>
+<li>You can, of course, specify the full ID.</li>
+<li>The <code>logs</code> command will output the <em>entire</em> logs of the container.
+<br/>(Sometimes, that will be too much. Let&#39;s see how to address that.)</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-41">
+    <section class="slide-content"><p></p><h3 id="view-only-the-tail-of-the-logs">View only the tail of the logs</h3>
+<p>To avoid being spammed with eleventy pages of output,
+we can use the <code>--tail</code> option:</p>
+<pre><code>$ docker logs --tail 3 068
+Fri Feb 20 00:55:35 UTC 2015
+Fri Feb 20 00:55:36 UTC 2015
+Fri Feb 20 00:55:37 UTC 2015
+</code></pre><ul>
+<li>The parameter is the number of lines that we want to see.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-42">
+    <section class="slide-content"><p></p><h3 id="follow-the-logs-in-real-time">Follow the logs in real time</h3>
+<p>Just like with the standard UNIX command <code>tail -f</code>, we can
+follow the logs of our container:</p>
+<pre><code>$ docker logs --tail 1 --follow 068
+Fri Feb 20 00:57:12 UTC 2015
+Fri Feb 20 00:57:13 UTC 2015
+^C
+</code></pre><ul>
+<li>This will display the last line in the log file.</li>
+<li>Then, it will continue to display the logs in real time.</li>
+<li>Use <code>^C</code> to exit.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-43">
+    <section class="slide-content"><p></p><h3 id="stop-our-container">Stop our container</h3>
+<p>There are two ways we can terminate our detached container.</p>
+<ul>
+<li>Killing it using the <code>docker kill</code> command.</li>
+<li>Stopping it using the <code>docker stop</code> command.</li>
+</ul>
+<p>The first one stops the container immediately, by using the
+<code>KILL</code> signal.</p>
+<p>The second one is more graceful. It sends a <code>TERM</code> signal,
+and after 10 seconds, if the container has not stopped, it
+sends <code>KILL.</code></p>
+<p>Reminder: the <code>KILL</code> signal cannot be intercepted, and will
+forcibly terminate the container.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-44">
+    <section class="slide-content"><p></p><h3 id="stopping-our-containers">Stopping our containers</h3>
+<p>Let&#39;s stop one of those containers:</p>
+<pre><code>$ docker stop 47d6
+47d6
+</code></pre><p>This will take 10 seconds:</p>
+<ul>
+<li>Docker sends the TERM signal;</li>
+<li>the container doesn&#39;t react to this signal
+(it&#39;s a simple Shell script with no special
+signal handling);</li>
+<li>10 seconds later, since the container is still
+running, Docker sends the KILL signal;</li>
+<li>this terminates the container.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-45">
+    <section class="slide-content"><p></p><h3 id="killing-the-remaining-containers">Killing the remaining containers</h3>
+<p>Let&#39;s be less patient with the two other containers:</p>
+<pre><code>$ docker kill 068 57ad
+068
+57ad
+</code></pre><p>The <code>stop</code> and <code>kill</code> commands can take multiple container IDs.</p>
+<p>Those containers will be terminated immediately (without
+the 10 seconds delay).</p>
+<p>Let&#39;s check that our containers don&#39;t show up anymore:</p>
+<pre><code>$ docker ps
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-46">
+    <section class="slide-content"><p></p><h3 id="list-stopped-containers">List stopped containers</h3>
+<p>We can also see stopped containers, with the <code>-a</code> (<code>--all</code>) option.</p>
+<pre><code>$ docker ps -a
+CONTAINER ID  IMAGE           ...  CREATED      STATUS
+068cc994ffd0  jpetazzo/clock  ...  21 min. ago  Exited (137) 3 min. ago
+57ad9bdfc06b  jpetazzo/clock  ...  21 min. ago  Exited (137) 3 min. ago
+47d677dcfba4  jpetazzo/clock  ...  23 min. ago  Exited (137) 3 min. ago
+5c1dfd4d81f1  jpetazzo/clock  ...  40 min. ago  Exited (0) 40 min. ago
+b13c164401fb  ubuntu          ...  55 min. ago  Exited (130) 53 min. ago
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-47">
+    <section class="slide-content"><h1 id="understanding-docker-images">Understanding Docker images</h1>
+<p><img src="images/title-understanding-docker-images.png" alt="image"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-48">
+    <section class="slide-content"><p></p><h3 id="objectives">Objectives</h3>
+<p>In this section, we will explain:</p>
+<ul>
+<li><p>What is an image.</p>
+</li>
+<li><p>What is a layer.</p>
+</li>
+<li><p>The various image namespaces.</p>
+</li>
+<li><p>How to search and download images.</p>
+</li>
+<li><p>Image tags and when to use them.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-49">
+    <section class="slide-content"><p></p><h3 id="what-is-an-image-">What is an image?</h3>
+<ul>
+<li><p>Image = files + metadata</p>
+</li>
+<li><p>These files form the root filesystem of our container.</p>
+</li>
+<li><p>The metadata can indicate a number of things, e.g.:</p>
+<ul>
+<li>the author of the image</li>
+<li>the command to execute in the container when starting it</li>
+<li>environment variables to be set</li>
+<li>etc.</li>
+</ul>
+</li>
+<li><p>Images are made of <em>layers</em>, conceptually stacked on top of each other.</p>
+</li>
+<li><p>Each layer can add, change, and remove files and/or metadata.</p>
+</li>
+<li><p>Images can share layers to optimize disk usage, transfer times, and memory use.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-50">
+    <section class="slide-content"><p></p><h3 id="example-for-a-java-webapp">Example for a Java webapp</h3>
+<p>Each of the following items will correspond to one layer:</p>
+<ul>
+<li>CentOS base layer</li>
+<li>Packages and configuration files added by our local IT</li>
+<li>JRE</li>
+<li>Tomcat</li>
+<li>Our application&#39;s dependencies</li>
+<li>Our application code and assets</li>
+<li>Our application configuration</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-51">
+    <section class="slide-content"><p>class: pic</p>
+<h3 id="the-read-write-layer">The read-write layer</h3>
+<p><img src="images/container-layers.jpg" alt="layers"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-52">
+    <section class="slide-content"><p>class: pic</p>
+<h3 id="multiple-containers-sharing-the-same-image">Multiple containers sharing the same image</h3>
+<p><img src="images/sharing-layers.jpg" alt="layers"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-53">
+    <section class="slide-content"><p></p><h3 id="differences-between-containers-and-images">Differences between containers and images</h3>
+<ul>
+<li><p>An image is a read-only filesystem.</p>
+</li>
+<li><p>A container is an encapsulated set of processes running in a
+read-write copy of that filesystem.</p>
+</li>
+<li><p>To optimize container boot time, <em>copy-on-write</em> is used
+instead of regular copy.</p>
+</li>
+<li><p><code>docker run</code> starts a container from a given image.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-54">
+    <section class="slide-content"><p></p><h3 id="comparison-with-object-oriented-programming">Comparison with object-oriented programming</h3>
+<ul>
+<li><p>Images are conceptually similar to <em>classes</em>.</p>
+</li>
+<li><p>Layers are conceptually similar to <em>inheritance</em>.</p>
+</li>
+<li><p>Containers are conceptually similar to <em>instances</em>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-55">
+    <section class="slide-content"><p></p><h3 id="wait-a-minute-">Wait a minute...</h3>
+<p>If an image is read-only, how do we change it?</p>
+<ul>
+<li><p>We don&#39;t.</p>
+</li>
+<li><p>We create a new container from that image.</p>
+</li>
+<li><p>Then we make changes to that container.</p>
+</li>
+<li><p>When we are satisfied with those changes, we transform them into a new layer.</p>
+</li>
+<li><p>A new image is created by stacking the new layer on top of the old image.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-56">
+    <section class="slide-content"><p></p><h3 id="a-chicken-and-egg-problem">A chicken-and-egg problem</h3>
+<ul>
+<li><p>The only way to create an image is by &quot;freezing&quot; a container.</p>
+</li>
+<li><p>The only way to create a container is by instanciating an image.</p>
+</li>
+<li><p>Help!</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-57">
+    <section class="slide-content"><p></p><h3 id="creating-the-first-images">Creating the first images</h3>
+<p>There is a special empty image called <code>scratch</code>.</p>
+<ul>
+<li>It allows to <em>build from scratch</em>.</li>
+</ul>
+<p>The <code>docker import</code> command loads a tarball into Docker.</p>
+<ul>
+<li>The imported tarball becomes a standalone image.</li>
+<li>That new image has a single layer.</li>
+</ul>
+<p>Note: you will probably never have to do this yourself.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-58">
+    <section class="slide-content"><p></p><h3 id="creating-other-images">Creating other images</h3>
+<p><code>docker commit</code></p>
+<ul>
+<li>Saves all the changes made to a container into a new layer.</li>
+<li>Creates a new image (effectively a copy of the container).</li>
+</ul>
+<p><code>docker build</code> <strong>(used 99% of the time)</strong></p>
+<ul>
+<li>Performs a repeatable build sequence.</li>
+<li>This is the preferred method!</li>
+</ul>
+<p>We will explain both methods in a moment.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-59">
+    <section class="slide-content"><p></p><h3 id="images-namespaces">Images namespaces</h3>
+<p>There are three namespaces:</p>
+<ul>
+<li><p>Official images</p>
+<p>  e.g. <code>ubuntu</code>, <code>busybox</code> ...</p>
+</li>
+<li><p>User (and organizations) images</p>
+<p>  e.g. <code>jpetazzo/clock</code></p>
+</li>
+<li><p>Self-hosted images</p>
+<p>  e.g. <code>registry.example.com:5000/my-private/image</code></p>
+</li>
+</ul>
+<p>Let&#39;s explain each of them.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-60">
+    <section class="slide-content"><p></p><h3 id="root-namespace">Root namespace</h3>
+<p>The root namespace is for official images. They are put there by Docker Inc.,
+but they are generally authored and maintained by third parties.</p>
+<p>Those images include:</p>
+<ul>
+<li><p>Small, &quot;swiss-army-knife&quot; images like busybox.</p>
+</li>
+<li><p>Distro images to be used as bases for your builds, like ubuntu, fedora...</p>
+</li>
+<li><p>Ready-to-use components and services, like redis, postgresql...</p>
+</li>
+<li><p>Over 130 at this point!</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-61">
+    <section class="slide-content"><p></p><h3 id="user-namespace">User namespace</h3>
+<p>The user namespace holds images for Docker Hub users and organizations.</p>
+<p>For example:</p>
+<pre><code>jpetazzo/clock
+</code></pre><p>The Docker Hub user is:</p>
+<pre><code>jpetazzo
+</code></pre><p>The image name is:</p>
+<pre><code>clock
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-62">
+    <section class="slide-content"><p></p><h3 id="self-hosted-namespace">Self-Hosted namespace</h3>
+<p>This namespace holds images which are not hosted on Docker Hub, but on third
+party registries.</p>
+<p>They contain the hostname (or IP address), and optionally the port, of the
+registry server.</p>
+<p>For example:</p>
+<pre><code>localhost:5000/wordpress
+</code></pre><ul>
+<li><code>localhost:5000</code> is the host and port of the registry</li>
+<li><code>wordpress</code> is the name of the image</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-63">
+    <section class="slide-content"><p></p><h3 id="how-do-you-store-and-manage-images-">How do you store and manage images?</h3>
+<p>Images can be stored:</p>
+<ul>
+<li>On your Docker host.</li>
+<li>In a Docker registry.</li>
+</ul>
+<p>You can use the Docker client to download (pull) or upload (push) images.</p>
+<p>To be more accurate: you can use the Docker client to tell a Docker Engine
+to push and pull images to and from a registry.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-64">
+    <section class="slide-content"><p></p><h3 id="showing-current-images">Showing current images</h3>
+<p>Let&#39;s look at what images are on our host now.</p>
+<pre><code>$ docker images
+REPOSITORY       TAG       IMAGE ID       CREATED         SIZE
+fedora           latest    ddd5c9c1d0f2   3 days ago      204.7 MB
+centos           latest    d0e7f81ca65c   3 days ago      196.6 MB
+ubuntu           latest    07c86167cdc4   4 days ago      188 MB
+redis            latest    4f5f397d4b7c   5 days ago      177.6 MB
+postgres         latest    afe2b5e1859b   5 days ago      264.5 MB
+alpine           latest    70c557e50ed6   5 days ago      4.798 MB
+debian           latest    f50f9524513f   6 days ago      125.1 MB
+busybox          latest    3240943c9ea3   2 weeks ago     1.114 MB
+training/namer   latest    902673acc741   9 months ago    289.3 MB
+jpetazzo/clock   latest    12068b93616f   12 months ago   2.433 MB
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-65">
+    <section class="slide-content"><p></p><h3 id="searching-for-images">Searching for images</h3>
+<p>We cannot list <em>all</em> images on a remote registry, but
+we can search for a specific keyword:</p>
+<pre><code>$ docker search marathon
+NAME                     DESCRIPTION                     STARS  OFFICIAL  AUTOMATED
+mesosphere/marathon      A cluster-wide init and co...   105              [OK]
+mesoscloud/marathon      Marathon                        31               [OK]
+mesosphere/marathon-lb   Script to update haproxy b...   22               [OK]
+tobilg/mongodb-marathon  A Docker image to start a ...   4                [OK]
+</code></pre><ul>
+<li><p>&quot;Stars&quot; indicate the popularity of the image.</p>
+</li>
+<li><p>&quot;Official&quot; images are those in the root namespace.</p>
+</li>
+<li><p>&quot;Automated&quot; images are built automatically by the Docker Hub.
+<br/>(This means that their build recipe is always available.)</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-66">
+    <section class="slide-content"><p></p><h3 id="downloading-images">Downloading images</h3>
+<p>There are two ways to download images.</p>
+<ul>
+<li><p>Explicitly, with <code>docker pull</code>.</p>
+</li>
+<li><p>Implicitly, when executing <code>docker run</code> and the image is not found locally.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-67">
+    <section class="slide-content"><p></p><h3 id="pulling-an-image">Pulling an image</h3>
+<pre><code>$ docker pull debian:jessie
+Pulling repository debian
+b164861940b8: Download complete
+b164861940b8: Pulling image (jessie) from debian
+d1881793a057: Download complete
+</code></pre><ul>
+<li><p>As seen previously, images are made up of layers.</p>
+</li>
+<li><p>Docker has downloaded all the necessary layers.</p>
+</li>
+<li><p>In this example, <code>:jessie</code> indicates which exact version of Debian
+we would like.</p>
+<p>It is a <em>version tag</em>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-68">
+    <section class="slide-content"><p></p><h3 id="image-and-tags">Image and tags</h3>
+<ul>
+<li><p>Images can have tags.</p>
+</li>
+<li><p>Tags define image versions or variants.</p>
+</li>
+<li><p><code>docker pull ubuntu</code> will refer to <code>ubuntu:latest</code>.</p>
+</li>
+<li><p>The <code>:latest</code> tag is generally updated often.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-69">
+    <section class="slide-content"><p></p><h3 id="when-to-not-use-tags">When to (not) use tags</h3>
+<p>Don&#39;t specify tags:</p>
+<ul>
+<li>When doing rapid testing and prototyping.</li>
+<li>When experimenting.</li>
+<li>When you want the latest version.</li>
+</ul>
+<p>Do specify tags:</p>
+<ul>
+<li>When recording a procedure into a script.</li>
+<li>When going to production.</li>
+<li>To ensure that the same version will be used everywhere.</li>
+<li>To ensure repeatability later.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-70">
+    <section class="slide-content"><p></p><h3 id="section-summary">Section summary</h3>
+<p>We&#39;ve learned how to:</p>
+<ul>
+<li>Understand images and layers.</li>
+<li>Understand Docker image namespacing.</li>
+<li>Search and download images.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-71">
+    <section class="slide-content"><h1 id="building-images-interactively">Building Images Interactively</h1>
+<p>In this section, we will create our first container image.</p>
+<p>It will be a basic distribution image, but we will pre-install
+the package <code>figlet</code>.</p>
+<p>We will: </p>
+<ul>
+<li><p>Create a container from a base image.</p>
+</li>
+<li><p>Install software manually in the container, and turn it
+into a new image.</p>
+</li>
+<li><p>Learn about new commands: <code>docker commit</code>, <code>docker tag</code>, and <code>docker diff</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-72">
+    <section class="slide-content"><p></p><h3 id="the-plan">The plan</h3>
+<ol>
+<li><p>Create a container (with <code>docker run</code>) using our base distro of choice.</p>
+</li>
+<li><p>Run a bunch of commands to install and set up our software in the container.</p>
+</li>
+<li><p>(Optionally) review changes in the container with <code>docker diff</code>.</p>
+</li>
+<li><p>Turn the container into a new image with <code>docker commit</code>.</p>
+</li>
+<li><p>(Optionally) add tags to the image with <code>docker tag</code>.</p>
+</li>
+</ol>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-73">
+    <section class="slide-content"><p></p><h3 id="setting-up-our-container">Setting up our container</h3>
+<p>Start an Ubuntu container:</p>
+<pre><code>$ docker run -it ubuntu
+root@&lt;yourContainerId&gt;:#/
+</code></pre><p>Run the command <code>apt-get update</code> to refresh the list of packages available to install.</p>
+<p>Then run the command <code>apt-get install figlet</code> to install the program we are interested in.</p>
+<pre><code>root@&lt;yourContainerId&gt;:#/ apt-get update &amp;&amp; apt-get install figlet
+.... OUTPUT OF APT-GET COMMANDS ....
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-74">
+    <section class="slide-content"><p></p><h3 id="inspect-the-changes">Inspect the changes</h3>
+<p>Type <code>exit</code> at the container prompt to leave the interactive session.</p>
+<p>Now let&#39;s run <code>docker diff</code> to see the difference between the base image
+and our container.</p>
+<pre><code>$ docker diff &lt;yourContainerId&gt;
+C /root
+A /root/.bash_history
+C /tmp
+C /usr
+C /usr/bin
+A /usr/bin/figlet
+...
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-75">
+    <section class="slide-content"><p>&nbsp;</p>
+<h3 id="docker-tracks-filesystem-changes">Docker tracks filesystem changes</h3>
+<p>As explained before:</p>
+<ul>
+<li><p>An image is read-only.</p>
+</li>
+<li><p>When we make changes, they happen in a copy of the image.</p>
+</li>
+<li><p>Docker can show the difference between the image, and its copy.</p>
+</li>
+<li><p>For performance, Docker uses copy-on-write systems.
+<br/>(i.e. starting a container based on a big image
+doesn&#39;t incur a huge copy.)</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-76">
+    <section class="slide-content"><p></p><h3 id="copy-on-write-security-benefits">Copy-on-write security benefits</h3>
+<ul>
+<li><p><code>docker diff</code> gives us an easy way to audit changes</p>
+<p>(à la Tripwire)</p>
+</li>
+<li><p>Containers can also be started in read-only mode</p>
+<p>(their root filesystem will be read-only, but they can still have read-write data volumes)</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-77">
+    <section class="slide-content"><p></p><h3 id="commit-our-changes-into-a-new-image">Commit our changes into a new image</h3>
+<p>The <code>docker commit</code> command will create a new layer with those changes,
+and a new image using this new layer.</p>
+<pre><code>$ docker commit &lt;yourContainerId&gt;
+&lt;newImageId&gt;
+</code></pre><p>The output of the <code>docker commit</code> command will be the ID for your newly created image.</p>
+<p>We can use it as an argument to <code>docker run</code>.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-78">
+    <section class="slide-content"><p></p><h3 id="testing-our-new-image">Testing our new image</h3>
+<p>Let&#39;s run this image:</p>
+<pre><code>$ docker run -it &lt;newImageId&gt;
+root@fcfb62f0bfde:/# figlet hello
+ _          _ _       
+| |__   ___| | | ___  
+| &#39;_ \ / _ \ | |/ _ \ 
+| | | |  __/ | | (_) |
+|_| |_|\___|_|_|\___/ 
+</code></pre><p>It works! .emoji[🎉]</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-79">
+    <section class="slide-content"><p></p><h3 id="tagging-images">Tagging images</h3>
+<p>Referring to an image by its ID is not convenient. Let&#39;s tag it instead.</p>
+<p>We can use the <code>tag</code> command:</p>
+<pre><code>$ docker tag &lt;newImageId&gt; figlet
+</code></pre><p>But we can also specify the tag as an extra argument to <code>commit</code>:</p>
+<pre><code>$ docker commit &lt;containerId&gt; figlet
+</code></pre><p>And then run it using its tag:</p>
+<pre><code>$ docker run -it figlet
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-80">
+    <section class="slide-content"><p></p><h3 id="what-s-next-">What&#39;s next?</h3>
+<p>Manual process = bad.</p>
+<p>Automated process = good.</p>
+<p>In the next chapter, we will learn how to automate the build
+process by writing a <code>Dockerfile</code>.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-81">
+    <section class="slide-content"><h1 id="building-docker-images-with-a-dockerfile">Building Docker images with a Dockerfile</h1>
+<p><img src="images/title-building-docker-images-with-a-dockerfile.jpg" alt="Construction site with containers"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-82">
+    <section class="slide-content"><p></p><h3 id="objectives">Objectives</h3>
+<p>We will build a container image automatically, with a <code>Dockerfile</code>.</p>
+<p>At the end of this lesson, you will be able to:</p>
+<ul>
+<li><p>Write a <code>Dockerfile</code>.</p>
+</li>
+<li><p>Build an image from a <code>Dockerfile</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-83">
+    <section class="slide-content"><p></p><h3 id="dockerfile-overview"><code>Dockerfile</code> overview</h3>
+<ul>
+<li><p>A <code>Dockerfile</code> is a build recipe for a Docker image.</p>
+</li>
+<li><p>It contains a series of instructions telling Docker how an image is constructed.</p>
+</li>
+<li><p>The <code>docker build</code> command builds an image from a <code>Dockerfile</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-84">
+    <section class="slide-content"><p></p><h3 id="writing-our-first-dockerfile">Writing our first <code>Dockerfile</code></h3>
+<p>Our Dockerfile must be in a <strong>new, empty directory</strong>.</p>
+<ol>
+<li>Create a directory to hold our <code>Dockerfile</code>.</li>
+</ol>
+<pre><code>$ mkdir myimage
+</code></pre><ol start="2">
+<li>Create a <code>Dockerfile</code> inside this directory.</li>
+</ol>
+<pre><code>$ cd myimage
+$ vim Dockerfile
+</code></pre><p>Of course, you can use any other editor of your choice.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-85">
+    <section class="slide-content"><p></p><h3 id="type-this-into-our-dockerfile-">Type this into our Dockerfile...</h3>
+<pre><code class="lang-dockerfile"><span class="hljs-keyword">FROM</span> ubuntu
+<span class="hljs-keyword">RUN</span><span class="bash"> apt-get update
+</span><span class="hljs-keyword">RUN</span><span class="bash"> apt-get install figlet</span>
+</code></pre>
+<ul>
+<li><p><code>FROM</code> indicates the base image for our build.</p>
+</li>
+<li><p>Each <code>RUN</code> line will be executed by Docker during the build.</p>
+</li>
+<li><p>Our <code>RUN</code> commands <strong>must be non-interactive.</strong>
+<br/>(No input can be provided to Docker during the build.)</p>
+</li>
+<li><p>In many cases, we will add the <code>-y</code> flag to <code>apt-get</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-86">
+    <section class="slide-content"><p></p><h3 id="build-it-">Build it!</h3>
+<p>Save our file, then execute:</p>
+<pre><code>$ docker build -t figlet .
+</code></pre><ul>
+<li><p><code>-t</code> indicates the tag to apply to the image.</p>
+</li>
+<li><p><code>.</code> indicates the location of the <em>build context</em>.</p>
+</li>
+</ul>
+<p>We will talk more about the build context later.</p>
+<p>To keep things simple for now: this is the directory where our Dockerfile is located.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-87">
+    <section class="slide-content"><p></p><h3 id="what-happens-when-we-build-the-image-">What happens when we build the image?</h3>
+<p>The output of <code>docker build</code> looks like this:</p>
+<p>.small[</p>
+<pre><code>docker build -t figlet .
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM ubuntu
+ --&gt; f975c5035748
+Step 2/3 : RUN apt-get update
+ --&gt; Running in e01b294dbffd
+(...output of the RUN command...)
+Removing intermediate container e01b294dbffd
+ --&gt; eb8d9b561b37
+Step 3/3 : RUN apt-get install figlet
+ --&gt; Running in c29230d70f9b
+(...output of the RUN command...)
+Removing intermediate container c29230d70f9b
+ --&gt; 0dfd7a253f21
+Successfully built 0dfd7a253f21
+Successfully tagged figlet:latest
+</code></pre><p>]</p>
+<ul>
+<li>The output of the <code>RUN</code> commands has been omitted.</li>
+<li>Let&#39;s explain what this output means.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-88">
+    <section class="slide-content"><p></p><h3 id="sending-the-build-context-to-docker">Sending the build context to Docker</h3>
+<pre><code>Sending build context to Docker daemon 2.048 kB
+</code></pre><ul>
+<li><p>The build context is the <code>.</code> directory given to <code>docker build</code>.</p>
+</li>
+<li><p>It is sent (as an archive) by the Docker client to the Docker daemon.</p>
+</li>
+<li><p>This allows to use a remote machine to build using local files.</p>
+</li>
+<li><p>Be careful (or patient) if that directory is big and your link is slow.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-89">
+    <section class="slide-content"><p></p><h3 id="executing-each-step">Executing each step</h3>
+<pre><code>Step 2/3 : RUN apt-get update
+ --&gt; Running in e01b294dbffd
+(...output of the RUN command...)
+Removing intermediate container e01b294dbffd
+ --&gt; eb8d9b561b37
+</code></pre><ul>
+<li><p>A container (<code>e01b294dbffd</code>) is created from the base image.</p>
+</li>
+<li><p>The <code>RUN</code> command is executed in this container.</p>
+</li>
+<li><p>The container is committed into an image (<code>eb8d9b561b37</code>).</p>
+</li>
+<li><p>The build container (<code>e01b294dbffd</code>) is removed.</p>
+</li>
+<li><p>The output of this step will be the base image for the next one.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-90">
+    <section class="slide-content"><p></p><h3 id="the-caching-system">The caching system</h3>
+<p>If you run the same build again, it will be instantaneous. Why?</p>
+<ul>
+<li><p>After each build step, Docker takes a snapshot of the resulting image.</p>
+</li>
+<li><p>Before executing a step, Docker checks if it has already built the same sequence.</p>
+</li>
+<li><p>Docker uses the exact strings defined in your Dockerfile, so:</p>
+<ul>
+<li><p><code>RUN apt-get install figlet cowsay</code> 
+<br/> is different from
+<br/> <code>RUN apt-get install cowsay figlet</code></p>
+</li>
+<li><p><code>RUN apt-get update</code> is not re-executed when the mirrors are updated</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>You can force a rebuild with <code>docker build --no-cache ...</code>.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-91">
+    <section class="slide-content"><p></p><h3 id="running-the-image">Running the image</h3>
+<p>The resulting image is not different from the one produced manually.</p>
+<pre><code>$ docker run -ti figlet
+root@91f3c974c9a1:/# figlet hello
+ _          _ _       
+| |__   ___| | | ___  
+| &#39;_ \ / _ \ | |/ _ \ 
+| | | |  __/ | | (_) |
+|_| |_|\___|_|_|\___/ 
+</code></pre><p>Yay! .emoji[🎉]</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-92">
+    <section class="slide-content"><p></p><h3 id="using-image-and-viewing-history">Using image and viewing history</h3>
+<p>The <code>history</code> command lists all the layers composing an image.</p>
+<p>For each layer, it shows its creation time, size, and creation command.</p>
+<p>When an image was built with a Dockerfile, each layer corresponds to
+a line of the Dockerfile.</p>
+<pre><code>$ docker history figlet
+IMAGE         CREATED            CREATED BY                     SIZE
+f9e8f1642759  About an hour ago  /bin/sh -c apt-get install fi  1.627 MB
+7257c37726a1  About an hour ago  /bin/sh -c apt-get update      21.58 MB
+07c86167cdc4  4 days ago         /bin/sh -c #(nop) CMD [&quot;/bin   0 B
+&lt;missing&gt;     4 days ago         /bin/sh -c sed -i &#39;s/^#\s*\(   1.895 kB
+&lt;missing&gt;     4 days ago         /bin/sh -c echo &#39;#!/bin/sh&#39;    194.5 kB
+&lt;missing&gt;     4 days ago         /bin/sh -c #(nop) ADD file:b   187.8 MB
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-93">
+    <section class="slide-content"><p></p><h3 id="introducing-json-syntax">Introducing JSON syntax</h3>
+<p>Most Dockerfile arguments can be passed in two forms:</p>
+<ul>
+<li><p>plain string:
+<br/><code>RUN apt-get install figlet</code></p>
+</li>
+<li><p>JSON list:
+<br/><code>RUN [&quot;apt-get&quot;, &quot;install&quot;, &quot;figlet&quot;]</code></p>
+</li>
+</ul>
+<p>We are going to change our Dockerfile to see how it affects the resulting image.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-94">
+    <section class="slide-content"><p></p><h3 id="using-json-syntax-in-our-dockerfile">Using JSON syntax in our Dockerfile</h3>
+<p>Let&#39;s change our Dockerfile as follows!</p>
+<pre><code class="lang-dockerfile"><span class="hljs-keyword">FROM</span> ubuntu
+<span class="hljs-keyword">RUN</span><span class="bash"> apt-get update
+</span><span class="hljs-keyword">RUN</span><span class="bash"> [<span class="hljs-string">"apt-get"</span>, <span class="hljs-string">"install"</span>, <span class="hljs-string">"figlet"</span>]</span>
+</code></pre>
+<p>Then build the new Dockerfile.</p>
+<pre><code>$ docker build -t figlet .
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-95">
+    <section class="slide-content"><p></p><h3 id="json-syntax-vs-string-syntax">JSON syntax vs string syntax</h3>
+<p>Compare the new history:</p>
+<pre><code>$ docker history figlet
+IMAGE         CREATED            CREATED BY                     SIZE
+27954bb5faaf  10 seconds ago     apt-get install figlet         1.627 MB
+7257c37726a1  About an hour ago  /bin/sh -c apt-get update      21.58 MB
+07c86167cdc4  4 days ago         /bin/sh -c #(nop) CMD [&quot;/bin   0 B
+&lt;missing&gt;     4 days ago         /bin/sh -c sed -i &#39;s/^#\s*\(   1.895 kB
+&lt;missing&gt;     4 days ago         /bin/sh -c echo &#39;#!/bin/sh&#39;    194.5 kB
+&lt;missing&gt;     4 days ago         /bin/sh -c #(nop) ADD file:b   187.8 MB
+</code></pre><ul>
+<li><p>JSON syntax specifies an <em>exact</em> command to execute.</p>
+</li>
+<li><p>String syntax specifies a command to be wrapped within <code>/bin/sh -c &quot;...&quot;</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-96">
+    <section class="slide-content"><p></p><h3 id="when-to-use-json-syntax-and-string-syntax">When to use JSON syntax and string syntax</h3>
+<ul>
+<li><p>String syntax:</p>
+<ul>
+<li>is easier to write</li>
+<li>interpolates environment variables and other shell expressions</li>
+<li>creates an extra process (<code>/bin/sh -c ...</code>) to parse the string</li>
+<li>requires <code>/bin/sh</code> to exist in the container</li>
+</ul>
+</li>
+<li><p>JSON syntax:</p>
+<ul>
+<li>is harder to write (and read!)</li>
+<li>passes all arguments without extra processing</li>
+<li>doesn&#39;t create an extra process</li>
+<li>doesn&#39;t require <code>/bin/sh</code> to exist in the container</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-97">
+    <section class="slide-content"><h1 id="cmd-and-entrypoint"><code>CMD</code> and <code>ENTRYPOINT</code></h1>
+<p><img src="images/entrypoint.jpg" alt="Container entry doors"></p>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-98">
+    <section class="slide-content"><p></p><h3 id="objectives">Objectives</h3>
+<p>In this lesson, we will learn about two important
+Dockerfile commands:</p>
+<p><code>CMD</code> and <code>ENTRYPOINT</code>.</p>
+<p>These commands allow us to set the default command
+to run in a container.</p>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-99">
+    <section class="slide-content"><p></p><h3 id="defining-a-default-command">Defining a default command</h3>
+<p>When people run our container, we want to greet them with a nice hello message, and using a custom font.</p>
+<p>For that, we will execute:</p>
+<pre><code>figlet -f script hello
+</code></pre><ul>
+<li><p><code>-f script</code> tells figlet to use a fancy font.</p>
+</li>
+<li><p><code>hello</code> is the message that we want it to display.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-100">
+    <section class="slide-content"><p></p><h3 id="adding-cmd-to-our-dockerfile">Adding <code>CMD</code> to our Dockerfile</h3>
+<p>Our new Dockerfile will look like this:</p>
+<pre><code class="lang-dockerfile"><span class="hljs-keyword">FROM</span> ubuntu
+<span class="hljs-keyword">RUN</span><span class="bash"> apt-get update
+</span><span class="hljs-keyword">RUN</span><span class="bash"> [<span class="hljs-string">"apt-get"</span>, <span class="hljs-string">"install"</span>, <span class="hljs-string">"figlet"</span>]
+</span><span class="hljs-keyword">CMD</span><span class="bash"> figlet -f script hello</span>
+</code></pre>
+<ul>
+<li><p><code>CMD</code> defines a default command to run when none is given.</p>
+</li>
+<li><p>It can appear at any point in the file.</p>
+</li>
+<li><p>Each <code>CMD</code> will replace and override the previous one.</p>
+</li>
+<li><p>As a result, while you can have multiple <code>CMD</code> lines, it is useless.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-101">
+    <section class="slide-content"><p></p><h3 id="build-and-test-our-image">Build and test our image</h3>
+<p>Let&#39;s build it:</p>
+<pre><code>$ docker build -t figlet .
+...
+Successfully built 042dff3b4a8d
+Successfully tagged figlet:latest
+</code></pre><p>And run it:</p>
+<pre><code>$ docker run figlet
+ _          _   _       
+| |        | | | |      
+| |     _  | | | |  __  
+|/ \   |/  |/  |/  /  \_
+|   |_/|__/|__/|__/\__/ 
+</code></pre></section>
+  </div>
+  <div class="slide hidden  " id="slide-102">
+    <section class="slide-content"><p></p><h3 id="overriding-cmd">Overriding <code>CMD</code></h3>
+<p>If we want to get a shell into our container (instead of running
+<code>figlet</code>), we just have to specify a different program to run:</p>
+<pre><code>$ docker run -it figlet bash
+root@7ac86a641116:/# 
+</code></pre><ul>
+<li><p>We specified <code>bash</code>.</p>
+</li>
+<li><p>It replaced the value of <code>CMD</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-103">
+    <section class="slide-content"><p></p><h3 id="using-entrypoint">Using <code>ENTRYPOINT</code></h3>
+<p>We want to be able to specify a different message on the command line,
+while retaining <code>figlet</code> and some default parameters.</p>
+<p>In other words, we would like to be able to do this:</p>
+<pre><code>$ docker run figlet salut
+           _            
+          | |           
+ ,   __,  | |       _|_ 
+/ \_/  |  |/  |   |  |  
+ \/ \_/|_/|__/ \_/|_/|_/
+</code></pre><p>We will use the <code>ENTRYPOINT</code> verb in Dockerfile.</p>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-104">
+    <section class="slide-content"><p></p><h3 id="adding-entrypoint-to-our-dockerfile">Adding <code>ENTRYPOINT</code> to our Dockerfile</h3>
+<p>Our new Dockerfile will look like this:</p>
+<pre><code class="lang-dockerfile"><span class="hljs-keyword">FROM</span> ubuntu
+<span class="hljs-keyword">RUN</span><span class="bash"> apt-get update
+</span><span class="hljs-keyword">RUN</span><span class="bash"> [<span class="hljs-string">"apt-get"</span>, <span class="hljs-string">"install"</span>, <span class="hljs-string">"figlet"</span>]
+</span><span class="hljs-keyword">ENTRYPOINT</span><span class="bash"> [<span class="hljs-string">"figlet"</span>, <span class="hljs-string">"-f"</span>, <span class="hljs-string">"script"</span>]</span>
+</code></pre>
+<ul>
+<li><p><code>ENTRYPOINT</code> defines a base command (and its parameters) for the container.</p>
+</li>
+<li><p>The command line arguments are appended to those parameters.</p>
+</li>
+<li><p>Like <code>CMD</code>, <code>ENTRYPOINT</code> can appear anywhere, and replaces the previous value.</p>
+</li>
+</ul>
+<p>Why did we use JSON syntax for our <code>ENTRYPOINT</code>?</p>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-105">
+    <section class="slide-content"><p></p><h3 id="implications-of-json-vs-string-syntax">Implications of JSON vs string syntax</h3>
+<ul>
+<li><p>When CMD or ENTRYPOINT use string syntax, they get wrapped in <code>sh -c</code>.</p>
+</li>
+<li><p>To avoid this wrapping, we can use JSON syntax.</p>
+</li>
+</ul>
+<p>What if we used <code>ENTRYPOINT</code> with string syntax?</p>
+<pre><code>$ docker run figlet salut
+</code></pre><p>This would run the following command in the <code>figlet</code> image:</p>
+<pre><code>sh -c &quot;figlet -f script&quot; salut
+</code></pre></section>
+  </div>
+  <div class="slide hidden  " id="slide-106">
+    <section class="slide-content"><p></p><h3 id="build-and-test-our-image">Build and test our image</h3>
+<p>Let&#39;s build it:</p>
+<pre><code>$ docker build -t figlet .
+...
+Successfully built 36f588918d73
+Successfully tagged figlet:latest
+</code></pre><p>And run it:</p>
+<pre><code>$ docker run figlet salut
+           _            
+          | |           
+ ,   __,  | |       _|_ 
+/ \_/  |  |/  |   |  |  
+ \/ \_/|_/|__/ \_/|_/|_/
+</code></pre></section>
+  </div>
+  <div class="slide hidden  " id="slide-107">
+    <section class="slide-content"><p></p><h3 id="using-cmd-and-entrypoint-together">Using <code>CMD</code> and <code>ENTRYPOINT</code> together</h3>
+<p>What if we want to define a default message for our container?</p>
+<p>Then we will use <code>ENTRYPOINT</code> and <code>CMD</code> together.</p>
+<ul>
+<li><p><code>ENTRYPOINT</code> will define the base command for our container.</p>
+</li>
+<li><p><code>CMD</code> will define the default parameter(s) for this command.</p>
+</li>
+<li><p>They <em>both</em> have to use JSON syntax.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-108">
+    <section class="slide-content"><p></p><h3 id="cmd-and-entrypoint-together"><code>CMD</code> and <code>ENTRYPOINT</code> together</h3>
+<p>Our new Dockerfile will look like this:</p>
+<pre><code class="lang-dockerfile"><span class="hljs-keyword">FROM</span> ubuntu
+<span class="hljs-keyword">RUN</span><span class="bash"> apt-get update
+</span><span class="hljs-keyword">RUN</span><span class="bash"> [<span class="hljs-string">"apt-get"</span>, <span class="hljs-string">"install"</span>, <span class="hljs-string">"figlet"</span>]
+</span><span class="hljs-keyword">ENTRYPOINT</span><span class="bash"> [<span class="hljs-string">"figlet"</span>, <span class="hljs-string">"-f"</span>, <span class="hljs-string">"script"</span>]
+</span><span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"hello world"</span>]</span>
+</code></pre>
+<ul>
+<li><p><code>ENTRYPOINT</code> defines a base command (and its parameters) for the container.</p>
+</li>
+<li><p>If we don&#39;t specify extra command-line arguments when starting the container,
+the value of <code>CMD</code> is appended.</p>
+</li>
+<li><p>Otherwise, our extra command-line arguments are used instead of <code>CMD</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-109">
+    <section class="slide-content"><p></p><h3 id="build-and-test-our-image">Build and test our image</h3>
+<p>Let&#39;s build it:</p>
+<pre><code>$ docker build -t figlet .
+...
+Successfully built 6e0b6a048a07
+Successfully tagged figlet:latest
+</code></pre><p>Run it without parameters:</p>
+<pre><code>$ docker run figlet
+ _          _   _                             _        
+| |        | | | |                           | |    |  
+| |     _  | | | |  __             __   ,_   | |  __|  
+|/ \   |/  |/  |/  /  \_  |  |  |_/  \_/  |  |/  /  |  
+|   |_/|__/|__/|__/\__/    \/ \/  \__/    |_/|__/\_/|_/
+</code></pre></section>
+  </div>
+  <div class="slide hidden  " id="slide-110">
+    <section class="slide-content"><p></p><h3 id="overriding-the-image-default-parameters">Overriding the image default parameters</h3>
+<p>Now let&#39;s pass extra arguments to the image.</p>
+<pre><code>$ docker run figlet hola mundo
+ _           _                                               
+| |         | |                                      |       
+| |     __  | |  __,     _  _  _           _  _    __|   __  
+|/ \   /  \_|/  /  |    / |/ |/ |  |   |  / |/ |  /  |  /  \_
+|   |_/\__/ |__/\_/|_/    |  |  |_/ \_/|_/  |  |_/\_/|_/\__/ 
+</code></pre><p>We overrode <code>CMD</code> but still used <code>ENTRYPOINT</code>.</p>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-111">
+    <section class="slide-content"><p></p><h3 id="overriding-entrypoint">Overriding <code>ENTRYPOINT</code></h3>
+<p>What if we want to run a shell in our container?</p>
+<p>We cannot just do <code>docker run figlet bash</code> because
+that would just tell figlet to display the word &quot;bash.&quot;</p>
+<p>We use the <code>--entrypoint</code> parameter:</p>
+<pre><code>$ docker run -it --entrypoint bash figlet
+root@6027e44e2955:/# 
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-112">
+    <section class="slide-content"><h1 id="naming-and-inspecting-containers">Naming and inspecting containers</h1>
+<p><img src="images/title-naming-and-inspecting-containers.jpg" alt="Markings on container door"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-113">
+    <section class="slide-content"><p></p><h3 id="objectives">Objectives</h3>
+<p>In this lesson, we will learn about an important
+Docker concept: container <em>naming</em>.</p>
+<p>Naming allows us to:</p>
+<ul>
+<li><p>Reference easily a container.</p>
+</li>
+<li><p>Ensure unicity of a specific container.</p>
+</li>
+</ul>
+<p>We will also see the <code>inspect</code> command, which gives a lot of details about a container.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-114">
+    <section class="slide-content"><p></p><h3 id="naming-our-containers">Naming our containers</h3>
+<p>So far, we have referenced containers with their ID.</p>
+<p>We have copy-pasted the ID, or used a shortened prefix.</p>
+<p>But each container can also be referenced by its name.</p>
+<p>If a container is named <code>thumbnail-worker</code>, I can do:</p>
+<pre><code>$ docker logs thumbnail-worker
+$ docker stop thumbnail-worker
+etc.
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-115">
+    <section class="slide-content"><p></p><h3 id="default-names">Default names</h3>
+<p>When we create a container, if we don&#39;t give a specific
+name, Docker will pick one for us.</p>
+<p>It will be the concatenation of:</p>
+<ul>
+<li><p>A mood (furious, goofy, suspicious, boring...)</p>
+</li>
+<li><p>The name of a famous inventor (tesla, darwin, wozniak...)</p>
+</li>
+</ul>
+<p>Examples: <code>happy_curie</code>, <code>clever_hopper</code>, <code>jovial_lovelace</code> ...</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-116">
+    <section class="slide-content"><p></p><h3 id="specifying-a-name">Specifying a name</h3>
+<p>You can set the name of the container when you create it.</p>
+<pre><code>$ docker run --name ticktock jpetazzo/clock
+</code></pre><p>If you specify a name that already exists, Docker will refuse
+to create the container.</p>
+<p>This lets us enforce unicity of a given resource.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-117">
+    <section class="slide-content"><p></p><h3 id="renaming-containers">Renaming containers</h3>
+<ul>
+<li><p>You can rename containers with <code>docker rename</code>.</p>
+</li>
+<li><p>This allows you to &quot;free up&quot; a name without destroying the associated container.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-118">
+    <section class="slide-content"><p></p><h3 id="inspecting-a-container">Inspecting a container</h3>
+<p>The <code>docker inspect</code> command will output a very detailed JSON map.</p>
+<pre><code>$ docker inspect &lt;containerID&gt;
+[{
+...
+(many pages of JSON here)
+...
+</code></pre><p>There are multiple ways to consume that information.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-119">
+    <section class="slide-content"><p></p><h3 id="parsing-json-with-the-shell">Parsing JSON with the Shell</h3>
+<ul>
+<li><p>You <em>could</em> grep and cut or awk the output of <code>docker inspect</code>.</p>
+</li>
+<li><p>Please, don&#39;t.</p>
+</li>
+<li><p>It&#39;s painful.</p>
+</li>
+<li><p>If you really must parse JSON from the Shell, use JQ! (It&#39;s great.)</p>
+</li>
+</ul>
+<pre><code>$ docker inspect &lt;containerID&gt; | jq .
+</code></pre><ul>
+<li>We will see a better solution which doesn&#39;t require extra tools.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-120">
+    <section class="slide-content"><p></p><h3 id="using-format">Using <code>--format</code></h3>
+<p>You can specify a format string, which will be parsed by 
+Go&#39;s text/template package.</p>
+<pre><code>$ docker inspect --format &#39;{{ json .Created }}&#39; &lt;containerID&gt;
+&quot;2015-02-24T07:21:11.712240394Z&quot;
+</code></pre><ul>
+<li><p>The generic syntax is to wrap the expression with double curly braces.</p>
+</li>
+<li><p>The expression starts with a dot representing the JSON object.</p>
+</li>
+<li><p>Then each field or member can be accessed in dotted notation syntax.</p>
+</li>
+<li><p>The optional <code>json</code> keyword asks for valid JSON output.
+<br/>(e.g. here it adds the surrounding double-quotes.)</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-121">
+    <section class="slide-content"><h1 id="working-with-volumes">Working with volumes</h1>
+<p><img src="images/title-working-with-volumes.jpg" alt="volume"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-122">
+    <section class="slide-content"><p></p><h3 id="objectives">Objectives</h3>
+<p>At the end of this section, you will be able to:</p>
+<ul>
+<li><p>Create containers holding volumes.</p>
+</li>
+<li><p>Share volumes across containers.</p>
+</li>
+<li><p>Share a host directory with one or many containers.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-123">
+    <section class="slide-content"><p></p><h3 id="working-with-volumes">Working with volumes</h3>
+<p>Docker volumes can be used to achieve many things, including:</p>
+<ul>
+<li><p>Bypassing the copy-on-write system to obtain native disk I/O performance.</p>
+</li>
+<li><p>Bypassing copy-on-write to leave some files out of <code>docker commit</code>.</p>
+</li>
+<li><p>Sharing a directory between multiple containers.</p>
+</li>
+<li><p>Sharing a directory between the host and a container.</p>
+</li>
+<li><p>Sharing a <em>single file</em> between the host and a container.</p>
+</li>
+<li><p>Using remote storage and custom storage with &quot;volume drivers&quot;.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-124">
+    <section class="slide-content"><p></p><h3 id="volumes-are-special-directories-in-a-container">Volumes are special directories in a container</h3>
+<p>Volumes can be declared in two different ways.</p>
+<ul>
+<li>Within a <code>Dockerfile</code>, with a <code>VOLUME</code> instruction.</li>
+</ul>
+<pre><code class="lang-dockerfile"><span class="hljs-keyword">VOLUME</span><span class="bash"> /uploads</span>
+</code></pre>
+<ul>
+<li>On the command-line, with the <code>-v</code> flag for <code>docker run</code>.</li>
+</ul>
+<pre><code>$ docker run -d -v /uploads myapp
+</code></pre><p>In both cases, <code>/uploads</code> (inside the container) will be a volume.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-125">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="volumes-bypass-the-copy-on-write-system">Volumes bypass the copy-on-write system</h3>
+<p>Volumes act as passthroughs to the host filesystem.</p>
+<ul>
+<li><p>The I/O performance on a volume is exactly the same as I/O performance
+on the Docker host.</p>
+</li>
+<li><p>When you <code>docker commit</code>, the content of volumes is not brought into
+the resulting image.</p>
+</li>
+<li><p>If a <code>RUN</code> instruction in a <code>Dockerfile</code> changes the content of a
+volume, those changes are not recorded neither.</p>
+</li>
+<li><p>If a container is started with the <code>--read-only</code> flag, the volume
+will still be writable (unless the volume is a read-only volume).</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-126">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="volumes-can-be-shared-across-containers">Volumes can be shared across containers</h3>
+<p>You can start a container with <em>exactly the same volumes</em> as another one.</p>
+<p>The new container will have the same volumes, in the same directories.</p>
+<p>They will contain exactly the same thing, and remain in sync.</p>
+<p>Under the hood, they are actually the same directories on the host anyway.</p>
+<p>This is done using the <code>--volumes-from</code> flag for <code>docker run</code>.</p>
+<p>We will see an example in the following slides.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-127">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="sharing-app-server-logs-with-another-container">Sharing app server logs with another container</h3>
+<p>Let&#39;s start a Tomcat container:</p>
+<pre><code>$ docker run --name webapp -d -p 8080:8080 -v /usr/local/tomcat/logs tomcat
+</code></pre><p>Now, start an <code>alpine</code> container accessing the same volume:</p>
+<pre><code>$ docker run --volumes-from webapp alpine sh -c &quot;tail -f /usr/local/tomcat/logs/*&quot;
+</code></pre><p>Then, from another window, send requests to our Tomcat container:</p>
+<pre><code>$ curl localhost:8080
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-128">
+    <section class="slide-content"><p></p><h3 id="volumes-exist-independently-of-containers">Volumes exist independently of containers</h3>
+<p>If a container is stopped or removed, its volumes still exist and are available.</p>
+<p>Volumes can be listed and manipulated with <code>docker volume</code> subcommands:</p>
+<pre><code>$ docker volume ls
+DRIVER              VOLUME NAME
+local               5b0b65e4316da67c2d471086640e6005ca2264f3...
+local               pgdata-prod
+local               pgdata-dev
+local               13b59c9936d78d109d094693446e174e5480d973...
+</code></pre><p>Some of those volume names were explicit (pgdata-prod, pgdata-dev).</p>
+<p>The others (the hex IDs) were generated automatically by Docker.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-129">
+    <section class="slide-content"><p></p><h3 id="naming-volumes">Naming volumes</h3>
+<ul>
+<li>Volumes can be created without a container, then used in multiple containers.</li>
+</ul>
+<p>Let&#39;s create a couple of volumes directly.</p>
+<pre><code>$ docker volume create webapps
+webapps
+</code></pre><pre><code>$ docker volume create logs
+logs
+</code></pre><p>Volumes are not anchored to a specific path.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-130">
+    <section class="slide-content"><p></p><h3 id="using-our-named-volumes">Using our named volumes</h3>
+<ul>
+<li><p>Volumes are used with the <code>-v</code> option.</p>
+</li>
+<li><p>When a host path does not contain a /, it is considered to be a volume name.</p>
+</li>
+</ul>
+<p>Let&#39;s start a web server using the two previous volumes.</p>
+<pre><code>$ docker run -d -p 1234:8080 \
+         -v logs:/usr/local/tomcat/logs \
+         -v webapps:/usr/local/tomcat/webapps \
+         tomcat
+</code></pre><p>Check that it&#39;s running correctly:</p>
+<pre><code>$ curl localhost:1234
+... (Tomcat tells us how happy it is to be up and running) ...
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-131">
+    <section class="slide-content"><p></p><h3 id="using-a-volume-in-another-container">Using a volume in another container</h3>
+<ul>
+<li><p>We will make changes to the volume from another container.</p>
+</li>
+<li><p>In this example, we will run a text editor in the other container.</p>
+<p>(But this could be a FTP server, a WebDAV server, a Git receiver...)</p>
+</li>
+</ul>
+<p>Let&#39;s start another container using the <code>webapps</code> volume.</p>
+<pre><code>$ docker run -v webapps:/webapps -w /webapps -ti alpine vi ROOT/index.jsp
+</code></pre><p>Vandalize the page, save, exit.</p>
+<p>Then run <code>curl localhost:1234</code> again to see your changes.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-132">
+    <section class="slide-content"><p></p><h3 id="using-custom-bind-mounts">Using custom &quot;bind-mounts&quot;</h3>
+<p>In some cases, you want a specific directory on the host to be mapped
+inside the container:</p>
+<ul>
+<li><p>You want to manage storage and snapshots yourself.</p>
+<p>  (With LVM, or a SAN, or ZFS, or anything else!)</p>
+</li>
+<li><p>You have a separate disk with better performance (SSD) or resiliency (EBS)
+than the system disk, and you want to put important data on that disk.</p>
+</li>
+<li><p>You want to share your source directory between your host (where the
+source gets edited) and the container (where it is compiled or executed).</p>
+</li>
+</ul>
+<p>Wait, we already met the last use-case in our example development workflow!
+Nice.</p>
+<pre><code>$ docker run -d -v /path/on/the/host:/path/in/container image ...
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-133">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="migrating-data-with-volumes-from">Migrating data with <code>--volumes-from</code></h3>
+<p>The <code>--volumes-from</code> option tells Docker to re-use all the volumes
+of an existing container.</p>
+<ul>
+<li><p>Scenario: migrating from Redis 2.8 to Redis 3.0.</p>
+</li>
+<li><p>We have a container (<code>myredis</code>) running Redis 2.8.</p>
+</li>
+<li><p>Stop the <code>myredis</code> container.</p>
+</li>
+<li><p>Start a new container, using the Redis 3.0 image, and the <code>--volumes-from</code> option.</p>
+</li>
+<li><p>The new container will inherit the data of the old one.</p>
+</li>
+<li><p>Newer containers can use <code>--volumes-from</code> too.</p>
+</li>
+<li><p>Doesn&#39;t work across servers, so not usable in clusters (Swarm, Kubernetes).</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-134">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="data-migration-in-practice">Data migration in practice</h3>
+<p>Let&#39;s create a Redis container.</p>
+<pre><code>$ docker run -d --name redis28 redis:2.8
+</code></pre><p>Connect to the Redis container and set some data.</p>
+<pre><code>$ docker run -ti --link redis28:redis busybox telnet redis 6379
+</code></pre><p>Issue the following commands:</p>
+<pre><code>SET counter 42
+INFO server
+SAVE
+QUIT
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-135">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="upgrading-redis">Upgrading Redis</h3>
+<p>Stop the Redis container.</p>
+<pre><code>$ docker stop redis28
+</code></pre><p>Start the new Redis container.</p>
+<pre><code>$ docker run -d --name redis30 --volumes-from redis28 redis:3.0
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-136">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="testing-the-new-redis">Testing the new Redis</h3>
+<p>Connect to the Redis container and see our data.</p>
+<pre><code>docker run -ti --link redis30:redis busybox telnet redis 6379
+</code></pre><p>Issue a few commands.</p>
+<pre><code>GET counter
+INFO server
+QUIT
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-137">
+    <section class="slide-content"><p></p><h3 id="volumes-lifecycle">Volumes lifecycle</h3>
+<ul>
+<li><p>When you remove a container, its volumes are kept around.</p>
+</li>
+<li><p>You can list them with <code>docker volume ls</code>.</p>
+</li>
+<li><p>You can access them by creating a container with <code>docker run -v</code>.</p>
+</li>
+<li><p>You can remove them with <code>docker volume rm</code> or <code>docker system prune</code>.</p>
+</li>
+</ul>
+<p>Ultimately, <em>you</em> are the one responsible for logging,
+monitoring, and backup of your volumes.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-138">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="checking-volumes-defined-by-an-image">Checking volumes defined by an image</h3>
+<p>Wondering if an image has volumes? Just use <code>docker inspect</code>:</p>
+<pre><code>$ # docker inspect training/datavol
+[{
+  &quot;config&quot;: {
+    . . .
+    &quot;Volumes&quot;: {
+        &quot;/var/webapp&quot;: {}
+    },
+    . . .
+}]
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-139">
+    <section class="slide-content"><p>class: extra-details</p>
+<h3 id="checking-volumes-used-by-a-container">Checking volumes used by a container</h3>
+<p>To look which paths are actually volumes, and to what they are bound,
+use <code>docker inspect</code> (again):</p>
+<pre><code>$ docker inspect &lt;yourContainerID&gt;
+[{
+  &quot;ID&quot;: &quot;&lt;yourContainerID&gt;&quot;,
+. . .
+  &quot;Volumes&quot;: {
+     &quot;/var/webapp&quot;: &quot;/var/lib/docker/vfs/dir/f4280c5b6207ed531efd4cc673ff620cef2a7980f747dbbcca001db61de04468&quot;
+  },
+  &quot;VolumesRW&quot;: {
+     &quot;/var/webapp&quot;: true
+  },
+}]
+</code></pre><ul>
+<li>We can see that our volume is present on the file system of the Docker host.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-140">
+    <section class="slide-content"><p></p><h3 id="sharing-a-single-file">Sharing a single file</h3>
+<p>The same <code>-v</code> flag can be used to share a single file (instead of a directory).</p>
+<p>One of the most interesting examples is to share the Docker control socket.</p>
+<pre><code>$ docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker sh
+</code></pre><p>From that container, you can now run <code>docker</code> commands communicating with
+the Docker Engine running on the host. Try <code>docker ps</code>!</p>
+<p>.warning[Since that container has access to the Docker socket, it
+has root-like access to the host.]</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-141">
+    <section class="slide-content"><p></p><h3 id="volume-plugins">Volume plugins</h3>
+<p>You can install plugins to manage volumes backed by particular storage systems,
+or providing extra features. For instance:</p>
+<ul>
+<li><p><a href="https://rexray.io/">REX-Ray</a> - create and manage volumes backed by an enterprise storage system (e.g.
+SAN or NAS), or by cloud block stores (e.g. EBS, EFS).</p>
+</li>
+<li><p><a href="http://portworx.com/">Portworx</a> - provides distributed block store for containers.</p>
+</li>
+<li><p><a href="https://www.gluster.org/">Gluster</a> - open source software-defined distributed storage that can scale
+to several petabytes. It provides interfaces for object, block and file storage.</p>
+</li>
+<li><p>and much more at the <a href="https://store.docker.com/search?category=volume&amp;q=&amp;type=plugin">Docker Store</a>!</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-142">
+    <section class="slide-content"><p></p><h3 id="volumes-vs-mounts">Volumes vs. Mounts</h3>
+<ul>
+<li><p>Since Docker 17.06, a new options is available: <code>--mount</code>.</p>
+</li>
+<li><p>It offers a new, richer syntax to manipulate data in containers.</p>
+</li>
+<li><p>It makes an explicit difference between:</p>
+<ul>
+<li><p>volumes (identified with a unique name, managed by a storage plugin),</p>
+</li>
+<li><p>bind mounts (identified with a host path, not managed).</p>
+</li>
+</ul>
+</li>
+<li><p>The former <code>-v</code> / <code>--volume</code> option is still usable.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-143">
+    <section class="slide-content"><p></p><h3 id="-mount-syntax"><code>--mount</code> syntax</h3>
+<p>Binding a host path to a container path:</p>
+<pre><code>$ docker run \
+  --mount type=bind,source=/path/on/host,target=/path/in/container alpine
+</code></pre><p>Mounting a volume to a container path:</p>
+<pre><code>$ docker run \
+  --mount source=myvolume,target=/path/in/container alpine
+</code></pre><p>Mounting a tmpfs (in-memory, for temporary files):</p>
+<pre><code>$ docker run \
+  --mount type=tmpfs,destination=/path/in/container,tmpfs-size=1000000 alpine
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-144">
+    <section class="slide-content"><p></p><h3 id="section-summary">Section summary</h3>
+<p>We&#39;ve learned how to:</p>
+<ul>
+<li><p>Create and manage volumes.</p>
+</li>
+<li><p>Share volumes across containers.</p>
+</li>
+<li><p>Share a host directory with one or many containers.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-145">
+    <section class="slide-content"><h1 id="compose-for-development-stacks">Compose for development stacks</h1>
+<p>Dockerfiles are great to build container images.</p>
+<p>But what if we work with a complex stack made of multiple containers?</p>
+<p>Eventually, we will want to write some custom scripts and automation to build, run, and connect
+our containers together.</p>
+<p>There is a better way: using Docker Compose.</p>
+<p>In this section, you will use Compose to bootstrap a development environment.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-146">
+    <section class="slide-content"><p></p><h3 id="what-is-docker-compose-">What is Docker Compose?</h3>
+<p>Docker Compose (formerly known as <code>fig</code>) is an external tool.</p>
+<p>Unlike the Docker Engine, it is written in Python. It&#39;s open source as well.</p>
+<p>The general idea of Compose is to enable a very simple, powerful onboarding workflow:</p>
+<ol>
+<li><p>Checkout your code.</p>
+</li>
+<li><p>Run <code>docker-compose up</code>.</p>
+</li>
+<li><p>Your app is up and running!</p>
+</li>
+</ol>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-147">
+    <section class="slide-content"><p></p><h3 id="compose-overview">Compose overview</h3>
+<p>This is how you work with Compose:</p>
+<ul>
+<li><p>You describe a set (or stack) of containers in a YAML file called <code>docker-compose.yml</code>.</p>
+</li>
+<li><p>You run <code>docker-compose up</code>.</p>
+</li>
+<li><p>Compose automatically pulls images, builds containers, and starts them.</p>
+</li>
+<li><p>Compose can set up links, volumes, and other Docker options for you.</p>
+</li>
+<li><p>Compose can run the containers in the background, or in the foreground.</p>
+</li>
+<li><p>When containers are running in the foreground, their aggregated output is shown.</p>
+</li>
+</ul>
+<p>Before diving in, let&#39;s see a small example of Compose in action.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-148">
+      <section class="slide-content"><p></p><h3 id="compose-overview">Compose overview</h3>
+    <p><img src="images/composeup.gif" alt="composeup"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-149">
+    <section class="slide-content"><p></p><h3 id="checking-if-compose-is-installed">Checking if Compose is installed</h3>
+<p>If you are using the official training virtual machines, Compose has been
+pre-installed.</p>
+<p>If you are using Docker for Mac/Windows or the Docker Toolbox, Compose comes with them.</p>
+<p>If you are on Linux (desktop or server environment), you will need to install Compose from its <a href="https://github.com/docker/compose/releases">release page</a> or with <code>pip install docker-compose</code>.</p>
+<p>You can always check that it is installed by running:</p>
+<pre><code>$ docker-compose --version
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-150">
+    <section class="slide-content"><p></p><h3 id="launching-our-first-stack-with-compose">Launching Our First Stack with Compose</h3>
+<p>First step: clone the source code for the app we will be working on.</p>
+<pre><code>$ cd
+$ git clone git://github.com/jpetazzo/trainingwheels
+...
+$ cd trainingwheels
+</code></pre><p>Second step: start your app.</p>
+<pre><code>$ docker-compose up
+</code></pre><p>Watch Compose build and run your app with the correct parameters,
+including linking the relevant containers together.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-151">
+    <section class="slide-content"><p></p><h3 id="launching-our-first-stack-with-compose">Launching Our First Stack with Compose</h3>
+<p>Verify that the app is running at <code>http://&lt;yourHostIP&gt;:8000</code>.</p>
+<p><img src="images/composeapp.png" alt="composeapp"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-152">
+    <section class="slide-content"><p></p><h3 id="stopping-the-app">Stopping the app</h3>
+<p>When you hit <code>^C</code>, Compose tries to gracefully terminate all of the containers.</p>
+<p>After ten seconds (or if you press <code>^C</code> again) it will forcibly kill
+them.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-153">
+    <section class="slide-content"><p></p><h3 id="the-docker-compose-yml-file">The <code>docker-compose.yml</code> file</h3>
+<p>Here is the file used in the demo:</p>
+<p>.small[</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">version:</span> <span class="hljs-string">"2"</span>
+
+<span class="hljs-attr">services:</span>
+<span class="hljs-attr">  www:</span>
+<span class="hljs-attr">    build:</span> <span class="hljs-string">www</span>
+<span class="hljs-attr">    ports:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-number">8000</span><span class="hljs-string">:5000</span>
+<span class="hljs-attr">    user:</span> <span class="hljs-string">nobody</span>
+<span class="hljs-attr">    environment:</span>
+<span class="hljs-attr">      DEBUG:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">python</span> <span class="hljs-string">counter.py</span>
+<span class="hljs-attr">    volumes:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">./www:/src</span>
+
+<span class="hljs-attr">  redis:</span>
+<span class="hljs-attr">    image:</span> <span class="hljs-string">redis</span>
+</code></pre>
+<p>]</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-154">
+    <section class="slide-content"><p></p><h3 id="compose-file-structure">Compose file structure</h3>
+<p>A Compose file has multiple sections:</p>
+<ul>
+<li><p><code>version</code> is mandatory. (We should use <code>&quot;2&quot;</code> or later; version 1 is deprecated.)</p>
+</li>
+<li><p><code>services</code> is mandatory. A service is one or more replicas of the same image running as containers.</p>
+</li>
+<li><p><code>networks</code> is optional and indicates to which networks containers should be connected.
+<br/>(By default, containers will be connected on a private, per-compose-file network.)</p>
+</li>
+<li><p><code>volumes</code> is optional and can define volumes to be used and/or shared by the containers.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-155">
+    <section class="slide-content"><p></p><h3 id="compose-file-versions">Compose file versions</h3>
+<ul>
+<li><p>Version 1 is legacy and shouldn&#39;t be used.</p>
+<p>(If you see a Compose file without <code>version</code> and <code>services</code>, it&#39;s a legacy v1 file.)</p>
+</li>
+<li><p>Version 2 added support for networks and volumes.</p>
+</li>
+<li><p>Version 3 added support for deployment options (scaling, rolling updates, etc).</p>
+</li>
+</ul>
+<p>The <a href="https://docs.docker.com/compose/compose-file/">Docker documentation</a>
+has excellent information about the Compose file format if you need to know more about versions.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-156">
+    <section class="slide-content"><p></p><h3 id="containers-in-docker-compose-yml">Containers in <code>docker-compose.yml</code></h3>
+<p>Each service in the YAML file must contain either <code>build</code>, or <code>image</code>.</p>
+<ul>
+<li><p><code>build</code> indicates a path containing a Dockerfile.</p>
+</li>
+<li><p><code>image</code> indicates an image name (local, or on a registry).</p>
+</li>
+<li><p>If both are specified, an image will be built from the <code>build</code> directory and named <code>image</code>.</p>
+</li>
+</ul>
+<p>The other parameters are optional.</p>
+<p>They encode the parameters that you would typically add to <code>docker run</code>.</p>
+<p>Sometimes they have several minor improvements.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-157">
+    <section class="slide-content"><p></p><h3 id="container-parameters">Container parameters</h3>
+<ul>
+<li><p><code>command</code> indicates what to run (like <code>CMD</code> in a Dockerfile).</p>
+</li>
+<li><p><code>ports</code> translates to one (or multiple) <code>-p</code> options to map ports.
+<br/>You can specify local ports (i.e. <code>x:y</code> to expose public port <code>x</code>).</p>
+</li>
+<li><p><code>volumes</code> translates to one (or multiple) <code>-v</code> options.
+<br/>You can use relative paths here.</p>
+</li>
+</ul>
+<p>For the full list, check: <a href="https://docs.docker.com/compose/compose-file/">https://docs.docker.com/compose/compose-file/</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-158">
+    <section class="slide-content"><p></p><h3 id="compose-commands">Compose commands</h3>
+<p>We already saw <code>docker-compose up</code>, but another one is <code>docker-compose build</code>.</p>
+<p>It will execute <code>docker build</code> for all containers mentioning a <code>build</code> path.</p>
+<p>It can also be invoked automatically when starting the application:</p>
+<pre><code>docker-compose up --build
+</code></pre><p>Another common option is to start containers in the background:</p>
+<pre><code>docker-compose up -d
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-159">
+    <section class="slide-content"><p></p><h3 id="check-container-status">Check container status</h3>
+<p>It can be tedious to check the status of your containers with <code>docker ps</code>,
+especially when running multiple apps at the same time.</p>
+<p>Compose makes it easier; with <code>docker-compose ps</code> you will see only the status of the
+containers of the current stack:</p>
+<p><code>`</code>
+$ docker-compose ps
+Name                      Command             State           Ports</p>
+</section>
+  </div>
+  <div class="slide hidden -------------------------------------------------------------------------" id="slide-160">
+    <section class="slide-content"><p>trainingwheels_redis_1   /entrypoint.sh red   Up      6379/tcp<br>trainingwheels_www_1     python counter.py    Up      0.0.0.0:8000-&gt;5000/tcp 
+<code>`</code></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-161">
+    <section class="slide-content"><p></p><h3 id="cleaning-up-1-">Cleaning up (1)</h3>
+<p>If you have started your application in the background with Compose and
+want to stop it easily, you can use the <code>kill</code> command:</p>
+<pre><code>$ docker-compose kill
+</code></pre><p>Likewise, <code>docker-compose rm</code> will let you remove containers (after confirmation):</p>
+<pre><code>$ docker-compose rm
+Going to remove trainingwheels_redis_1, trainingwheels_www_1
+Are you sure? [yN] y
+Removing trainingwheels_redis_1...
+Removing trainingwheels_www_1...
+</code></pre></section>
+  </div>
+  <div class="slide hidden" id="slide-162">
+    <section class="slide-content"><p></p><h3 id="cleaning-up-2-">Cleaning up (2)</h3>
+<p>Alternatively, <code>docker-compose down</code> will stop and remove containers.</p>
+<p>It will also remove other resources, like networks that were created for the application.</p>
+<pre><code>$ docker-compose down
+Stopping trainingwheels_www_1 ... done
+Stopping trainingwheels_redis_1 ... done
+Removing trainingwheels_www_1 ... done
+Removing trainingwheels_redis_1 ... done
+</code></pre><p>Use <code>docker-compose down -v</code> to remove everything including volumes.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-163">
+    <section class="slide-content"><p></p><h3 id="special-handling-of-volumes">Special handling of volumes</h3>
+<p>Compose is smart. If your container uses volumes, when you restart your
+application, Compose will create a new container, but carefully re-use
+the volumes it was using previously.</p>
+<p>This makes it easy to upgrade a stateful service, by pulling its
+new image and just restarting your stack with Compose.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-164">
+    <section class="slide-content"><p></p><h3 id="compose-project-name">Compose project name</h3>
+<ul>
+<li><p>When you run a Compose command, Compose infers the &quot;project name&quot; of your app.</p>
+</li>
+<li><p>By default, the &quot;project name&quot; is the name of the current directory.</p>
+</li>
+<li><p>For instance, if you are in <code>/home/zelda/src/ocarina</code>, the project name is <code>ocarina</code>.</p>
+</li>
+<li><p>All resources created by Compose are tagged with this project name.</p>
+</li>
+<li><p>The project name also appears as a prefix of the names of the resources.</p>
+<p>E.g. in the previous example, service <code>www</code> will create a container <code>ocarina_www_1</code>.</p>
+</li>
+<li><p>The project name can be overridden with <code>docker-compose -p</code>.</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-165">
+    <section class="slide-content"><p></p><h3 id="running-two-copies-of-the-same-app">Running two copies of the same app</h3>
+<p>If you want to run two copies of the same app simultaneously, all you have to do is to
+make sure that each copy has a different project name.</p>
+<p>You can:</p>
+<ul>
+<li><p>copy your code in a directory with a different name</p>
+</li>
+<li><p>start each copy with <code>docker-compose -p myprojname up</code></p>
+</li>
+</ul>
+<p>Each copy will run in a different network, totally isolated from the other.</p>
+<p>This is ideal to debug regressions, do side-by-side comparisons, etc.</p>
+</section>
+  </div>
+  <div class="slide hidden author-slide" id="slide-166">
+    <section class="slide-content"><div class="author">
+  <h1 class="name">Marcel Samuel</h1>
+    <h3 class="twitter">
+      <a href="http://twitter.com/@datamanMarcel">@datamanMarcel</a>
+    </h3>
+</div>
+</section>
+  </div>
+
+
+
+  <script type="text/javascript">
+    /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  try {
+    window.history.replaceState({} , null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
+  }
+}
+
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+
+  </script>
+</body>
+</html>
